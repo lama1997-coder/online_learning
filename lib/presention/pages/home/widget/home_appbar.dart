@@ -116,5 +116,45 @@ class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-    Size get preferredSize => const Size.fromHeight(240);
+    Size get preferredSize => const Size.fromHeight(220);
+}
+
+
+class HomeTileBar extends StatelessWidget {
+  const HomeTileBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return  Container(
+            height: 100,
+            padding: const EdgeInsets.all(20),
+            color: ThemeDataProvider.buttonDisableColor,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      DefaultText(
+                        title: "Hi, Kristin",
+                        fontWeight: FontWeight.w600,
+                        size: 24,
+                      ),
+                      DefaultText(title: 'Let’s start learning')
+                    ],
+                  ),
+                ),
+                ClipOval(
+                  child: Image.asset(
+                    Images.profile,
+                    width: 50,
+                  ),
+                )
+              ],
+            ),
+          );
+  }
 }
