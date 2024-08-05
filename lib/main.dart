@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_learning/configration/themedata.dart';
+import 'package:online_learning/presention/bloc/learning_plan/learning_plan_bloc.dart';
+import 'package:online_learning/presention/bloc/login/login_bloc.dart';
+import 'package:online_learning/presention/bloc/login/login_event.dart';
 import 'package:online_learning/presention/bloc/pagination_cupit.dart';
 import 'package:online_learning/presention/widgets/widget_import.dart';
 import 'injection.dart' as di;
@@ -17,7 +20,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (_) => di.locator<PaginationCupit>())],
+      providers: [
+        BlocProvider(create: (_) => di.locator<PaginationCupit>()),
+        BlocProvider(create: (_) => di.locator<LoginBloc>()),
+                BlocProvider(create: (_) => di.locator<LearningPlanBloc>())
+
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',

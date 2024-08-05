@@ -1,9 +1,21 @@
 part of 'widget_import.dart';
 
-class MainWidget extends StatelessWidget {
+class MainWidget extends StatefulWidget {
   //final Widget child;
   final PreferredSizeWidget? appBar;
   const MainWidget({super.key, this.appBar});
+
+  @override
+  State<MainWidget> createState() => _MainWidgetState();
+}
+
+class _MainWidgetState extends State<MainWidget> {
+  HomeData homeData = HomeData();
+  @override
+  void initState() {
+    context.read<LoginBloc>().add(LoginReloadChange());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -11,41 +11,48 @@ class Home extends StatelessWidget {
     HomeData homeData = HomeData();
     return Scaffold(
       //   appBar: const HomeAppbar(),
-      body: CustomScrollView(
-        slivers: <Widget>[
-          SliverAppBar( 
-              pinned: _pinned,
-              leading: Container(),
-              backgroundColor: Colors.
-              white,
-              snap: _snap,
-              floating: _floating,
-              expandedHeight: 220.0,
-              flexibleSpace:FlexibleSpaceBar(background:  HomeAppbar(),)),
-              
-          const SliverToBoxAdapter(
-            child: SizedBox(
-              height: 50,
+      body: BlocListener<LoginBloc, LoginState>(
+        listener: (context, state) {
+          if (state is LoginSuccess) {
+            context.read<LearningPlanBloc>().add(LearningPlanReloadChange());
+          }
+        },
+        child: CustomScrollView(
+          slivers: <Widget>[
+            SliverAppBar(
+                pinned: _pinned,
+                leading: Container(),
+                backgroundColor: Colors.white,
+                snap: _snap,
+                floating: _floating,
+                expandedHeight: 220.0,
+                flexibleSpace: FlexibleSpaceBar(
+                  background: HomeAppbar(),
+                )),
+            const SliverToBoxAdapter(
+              child: SizedBox(
+                height: 50,
+              ),
             ),
-          ),
-          SliverList(
-            delegate: SliverChildListDelegate(
-              [
-                OverviewWidget(homeData: homeData),
-                const SizedBox(
-                  height: 23,
-                ),
-                LearningPlan(
-                  homeData: homeData,
-                ),
-                const SizedBox(
-                  height: 23,
-                ),
-                const Meetup()
-              ],
+            SliverList(
+              delegate: SliverChildListDelegate(
+                [
+                  OverviewWidget(homeData: homeData),
+                  const SizedBox(
+                    height: 23,
+                  ),
+                  LearningPlan(
+                    homeData: homeData,
+                  ),
+                  const SizedBox(
+                    height: 23,
+                  ),
+                  const Meetup()
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
 //  ListView(
 //         shrinkWrap: true,

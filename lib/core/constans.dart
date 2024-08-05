@@ -18,3 +18,6 @@ class Images {
   static String activeAccount = "lib/assets/images/active_account.svg";
   static String account = "lib/assets/images/account.svg";
 }
+class URL {
+  static String baseUrl = "http://54.90.253.254:3003/api/v1";
+}

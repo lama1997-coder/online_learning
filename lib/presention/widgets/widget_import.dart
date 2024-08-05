@@ -4,7 +4,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_learning/core/constans.dart';
+import 'package:online_learning/presention/bloc/login/login_bloc.dart';
+import 'package:online_learning/presention/bloc/login/login_event.dart';
 import 'package:online_learning/presention/bloc/pagination_cupit.dart';
+import 'package:online_learning/presention/pages/home/home_data.dart';
 import 'package:online_learning/presention/pages/home/home_import.dart';
 
 import '../../configration/themedata.dart';
