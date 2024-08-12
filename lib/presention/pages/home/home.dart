@@ -9,7 +9,8 @@ class Home extends StatelessWidget {
     bool _snap = false;
     bool _floating = false;
     HomeData homeData = HomeData();
-    return Scaffold(
+    return 
+    Scaffold(
       //   appBar: const HomeAppbar(),
       body: BlocListener<LoginBloc, LoginState>(
         listener: (context, state) {
@@ -17,41 +18,77 @@ class Home extends StatelessWidget {
             context.read<LearningPlanBloc>().add(LearningPlanReloadChange());
           }
         },
-        child: CustomScrollView(
-          slivers: <Widget>[
-            SliverAppBar(
-                pinned: _pinned,
-                leading: Container(),
-                backgroundColor: Colors.white,
-                snap: _snap,
-                floating: _floating,
-                expandedHeight: 220.0,
-                flexibleSpace: FlexibleSpaceBar(
-                  background: HomeAppbar(),
-                )),
-            const SliverToBoxAdapter(
-              child: SizedBox(
-                height: 50,
+        child: NestedScrollView(
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          floatHeaderSlivers: true,
+          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            return <Widget>[
+              // const SliverAppBar(
+              //   expandedHeight: 105.0,
+              //   floating: false,
+              //   backgroundColor: ThemeDataProvider.mainAppColor,
+              //   titleSpacing: 0,
+              //   elevation: 0,
+              //   pinned: true,
+              //   flexibleSpace: FlexibleSpaceBar(
+              //       titlePadding: EdgeInsets.all(0),
+              //       //  title: HomeTileBar(),
+              //       background: HomeTileBar()),
+              // ),
+            ];
+          },
+          body: CustomScrollView(
+            clipBehavior: Clip.antiAlias,
+            slivers: <Widget>[
+              // SliverAppBar(
+              //     pinned: _pinned,
+              //     leading: Container(),
+              //     backgroundColor: Colors.transparent,
+              //     snap: _snap,
+              //     floating: _floating,
+              //     elevation: 0,
+              //     expandedHeight: 200.0,
+              //     flexibleSpace: FlexibleSpaceBar(
+              //       titlePadding: EdgeInsets.all(0),
+              //       //  title: HomeTileBar(),
+              //       background: HomeAppbar(),
+              //     )),
+              //  SliverToBoxAdapter(
+              //   child:   SizedBox(
+              //         height: 10,
+              //         child: Column(
+              //           children: [
+              //             Container(color: Colors.transparent,),
+              //           ],
+              //         ),
+              //       ),
+              // ),
+              SliverList(
+                delegate: SliverChildListDelegate(
+                  [
+                    HomeAppbar(),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    SizedBox(
+                      height: 23,
+                    ),
+                    OverviewWidget(homeData: homeData),
+                    SizedBox(
+                      height: 23,
+                    ),
+                    LearningPlan(
+                      homeData: homeData,
+                    ),
+                    const SizedBox(
+                      height: 23,
+                    ),
+                    const Meetup()
+                  ],
+                ),
               ),
-            ),
-            SliverList(
-              delegate: SliverChildListDelegate(
-                [
-                  OverviewWidget(homeData: homeData),
-                  const SizedBox(
-                    height: 23,
-                  ),
-                  LearningPlan(
-                    homeData: homeData,
-                  ),
-                  const SizedBox(
-                    height: 23,
-                  ),
-                  const Meetup()
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
 //  ListView(
@@ -72,5 +109,37 @@ class Home extends StatelessWidget {
 //         ],
 //       ),
     );
+    Scaffold(
+      appBar: HomeAppbar(),
+      body: ListView(children: [
+                 //   HomeAppbar(),
+                    SizedBox(
+                      height: 100,
+                    ),
+                    SizedBox(
+                      height: 23,
+                    ),
+                    OverviewWidget(homeData: homeData),
+                    SizedBox(
+                      height: 23,
+                    ),
+                    LearningPlan(
+                      homeData: homeData,
+                    ),
+                    const SizedBox(
+                      height: 23,
+                    ),
+                    const Meetup(),
+                       const SizedBox(
+                      height: 23,
+                    ),
+                    const Meetup(),
+                       const SizedBox(
+                      height: 23,
+                    ),
+                    const Meetup()
+                  ],),
+    );
+
   }
 }

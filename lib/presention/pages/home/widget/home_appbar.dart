@@ -5,13 +5,15 @@ class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PreferredSize(
-      preferredSize: Size(MediaQuery.of(context).size.width, 300),
+    return Container(
+      color: Colors.transparent,
       child: Stack(
+                      clipBehavior: Clip.none,
+      
         children: <Widget>[
           Container(
-            height: 150,
-            padding: const EdgeInsets.all(20),
+            height: 140,
+            padding: const EdgeInsets.all(20),  
             color: ThemeDataProvider.mainAppColor,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -40,9 +42,9 @@ class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
               ],
             ),
           ),
-
+      
           Container(), // Required some widget in between to float AppBar
-
+      
           Positioned(
             // To take AppBar Size only
             top: 100.0,
@@ -116,19 +118,21 @@ class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-    Size get preferredSize => const Size.fromHeight(220);
+    Size get preferredSize => const Size.fromHeight(140);
 }
 
 
-class HomeTileBar extends StatelessWidget {
+class HomeTileBar extends StatelessWidget implements PreferredSizeWidget{
   const HomeTileBar({super.key});
-
+@override
+    Size get preferredSize => const Size.fromHeight(100);
   @override
   Widget build(BuildContext context) {
     return  Container(
-            height: 100,
+          //  height: 120,
             padding: const EdgeInsets.all(20),
-            color: ThemeDataProvider.buttonDisableColor,
+         //   margin: EdgeInsets.all(0),
+            color: ThemeDataProvider.mainAppColor,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
